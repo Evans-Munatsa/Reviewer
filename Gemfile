@@ -30,6 +30,10 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'pg'	
+end
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
