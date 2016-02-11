@@ -1,0 +1,11 @@
+<div class="rate-ratings" data-score=" <%= rate.ratings %>"></div>
+<p><%= rate.comment %></p>
+
+<% if user_signed_in? %>
+  <% if rate.user_id == current_user.id %>
+
+    <%= link_to "Edit", edit_book_rate_path(rate.book, rate) %>
+    <%= link_to "Delete", book_rate_path(rate.book, rate), method: :delete, data: { confirm: "Are you sure?"} %>
+
+  <% end %>
+<% end %>
