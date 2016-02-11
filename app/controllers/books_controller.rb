@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit]
 
   def index
     if params[:category].blank?
@@ -11,6 +12,11 @@ class BooksController < ApplicationController
   end
 
   def show
+    if @book.rates.blank?
+      @average_rate = 0
+    else
+      @average_rate = @book.rates.average(:ratings).round(2)
+    end
   end
 
   def new
